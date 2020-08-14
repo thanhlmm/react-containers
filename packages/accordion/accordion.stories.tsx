@@ -9,8 +9,14 @@ import React, { createRef } from 'react';
 
 import { boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { AccordionContainer, useAccordion, IUseAccordionReturnValue } from './src';
+import { StoryMeta } from '@componentdriven/csf';
 
-export const Container = () => {
+// https://github.com/storybookjs/storybook/issues/7677
+// https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#hoisted-csf-annotations
+
+export type StoryFC<P = any> = React.FC<P> & StoryMeta<any, any, any, any>;
+
+export const Container: any = () => {
   const size = number('Sections', 5, { range: true, min: 1, max: 9 });
   const sections = Array(size)
     .fill(undefined)
@@ -75,7 +81,7 @@ export const Container = () => {
   );
 };
 
-export const Hook = () => {
+export const Hook: any = () => {
   const size = number('Sections', 5, { range: true, min: 1, max: 9 });
   const sections = Array(size)
     .fill(undefined)
@@ -137,17 +143,14 @@ export const Hook = () => {
   );
 };
 
-Container.story = {
-  name: 'AccordionContainer'
-};
+Container.storyName = 'AccordionContainer';
 
-Hook.story = {
-  name: `useAccordion`,
-  parameters: {
-    docs: {
-      storyDescription: `The \`useAccordion\` hook manages toggle state and required accessibility
-      attributes for a group of sections.`
-    }
+Hook.storyName = 'useAccordion';
+
+Hook.parameters = {
+  docs: {
+    storyDescription: `The \`useAccordion\` hook manages toggle state and required accessibility
+    attributes for a group of sections.`
   }
 };
 
