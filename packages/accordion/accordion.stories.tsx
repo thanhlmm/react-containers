@@ -91,47 +91,66 @@ export const Hook = () => {
     } = useAccordion({ expandable, collapsible });
 
     return (
-      <div style={{ width: 300 }}>
-        {sections.map((section, index) => {
-          const disabled = disabledSections.indexOf(index) !== -1;
-          const hidden = expandedSections.indexOf(index) === -1;
+      <>
+        <h1 style={{ paddingTop: '210px', marginBottom: '25px', background: 'green' }}>content</h1>
+        <h1 style={{ paddingTop: '210px', marginBottom: '25px', background: 'green' }}>content</h1>
+        <h1 style={{ paddingTop: '210px', marginBottom: '25px', background: 'green' }}>content</h1>
+        <h1 style={{ paddingTop: '210px', marginBottom: '25px', background: 'green' }}>content</h1>
+        <h1 style={{ paddingTop: '210px', marginBottom: '25px', background: 'green' }}>content</h1>
+        <div style={{ width: 300 }}>
+          {sections.map((section, index) => {
+            const disabled = disabledSections.indexOf(index) !== -1;
+            const hidden = expandedSections.indexOf(index) === -1;
 
-          return (
-            <div key={index}>
-              <h2 {...getHeaderProps({ role: null, ariaLevel: null })}>
-                <button
-                  {...getTriggerProps({
+            return (
+              <div key={index}>
+                <h2 {...getHeaderProps({ role: null, ariaLevel: null })}>
+                  <button
+                    {...getTriggerProps({
+                      index,
+                      role: null,
+                      tabIndex: null,
+                      disabled,
+                      style: { width: '100%', textAlign: 'inherit' }
+                    })}
+                  >
+                    {`Trigger ${index + 1}`}
+                  </button>
+                </h2>
+                <section
+                  {...getPanelProps({
                     index,
                     role: null,
-                    tabIndex: null,
-                    disabled,
-                    style: { width: '100%', textAlign: 'inherit' }
+                    hidden
                   })}
                 >
-                  {`Trigger ${index + 1}`}
-                </button>
-              </h2>
-              <section
-                {...getPanelProps({
-                  index,
-                  role: null,
-                  hidden
-                })}
-              >
-                {`[Panel ${index + 1}] `}
-                Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon
-                amaranth tatsoi tomatillo melon azuki bean garlic.
-              </section>
-            </div>
-          );
-        })}
-      </div>
+                  {`[Panel ${index + 1}] `}
+                  Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
+                  daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+                </section>
+              </div>
+            );
+          })}
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </>
     );
   };
 
   return (
     <Accordion
-      expandable={boolean('Expandable', true)}
+      expandable={boolean('Expandable', false)}
       collapsible={boolean('Collapsible', true)}
     />
   );
