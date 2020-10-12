@@ -10,8 +10,30 @@ import React, { createRef } from 'react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 
 import { TabsContainer, useTabs } from './src';
+import { ThemeProvider, DEFAULT_THEME } from '@zendeskgarden/react-theming';
+
+import { Tabs, Tab, TabList, TabPanel } from './src/Tabs';
 
 const tabs = ['Tab 1', 'Tab 2', 'Tab 3'];
+
+export const Bug = () => {
+  const [selectedTab, setSelectedTab] = React.useState('tab-1');
+
+  return (
+    <ThemeProvider theme={DEFAULT_THEME}>
+      <Tabs isVertical selectedItem={selectedTab} onChange={setSelectedTab}>
+        <TabList>
+          <Tab item="tab-1">Tab 1</Tab>
+          <Tab item="tab-2">Tab 2</Tab>
+          <Tab item="tab-3">Tab 3</Tab>
+        </TabList>
+        <TabPanel item="tab-1">Content for Tab 1.</TabPanel>
+        <TabPanel item="tab-2">Content for Tab 2.</TabPanel>
+        <TabPanel item="tab-3">Content for Tab 3.</TabPanel>
+      </Tabs>
+    </ThemeProvider>
+  );
+};
 
 export const Container = () => {
   const vertical = boolean('vertical', false);
